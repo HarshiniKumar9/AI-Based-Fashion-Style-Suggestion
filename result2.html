@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Result</title>
+    <link href="https://fonts.googleapis.com/css2?family=Alice&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Alice', serif; /* Apply Alice font to entire page */
+            text-align: center;
+            background: radial-gradient(circle, #330033, #000000); /* Cyberpunk Purple-Black */
+            color: white;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden; /* Hide scrollbar but keep functionality */
+            position: relative;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            background: rgba(20, 20, 20, 0.8);
+            padding: 20px;
+            width: 80%; /* Increased container width */
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 8px;
+            box-shadow: 0px 0px 20px rgba(255, 0, 255, 0.6); /* Circular Shadow */
+            backdrop-filter: blur(10px);
+            overflow-y: auto;
+            max-height: 80%;
+        }
+
+        /* Image section */
+        .img-section {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            flex-direction: column; /* Align vertically */
+        }
+
+        .img-preview {
+            width: 100%;
+            max-width: 250px; /* Reduced image size */
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        /* Result & Recommendations section */
+        .result-section {
+            flex: 1;
+            margin-left: 20px;
+            text-align: left;
+            font-size: 18px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #ff4081;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            font-family: 'Alice', serif; /* Alice font for buttons */
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+            border: none;
+            margin-top: 20px; /* Add some space between button and image */
+        }
+
+        .btn:hover {
+            background-color: #d81b60;
+        }
+
+        .result-text {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .result-text p {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 10px;
+        }
+
+        .recommendations {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        /* Change link color */
+        a {
+            color: #00ffff; /* Cyan color for links */
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #00ff00; /* Neon Green on hover */
+            text-decoration: underline;
+        }
+
+        .product-links a {
+            color: #ff4081;
+            text-decoration: none;
+        }
+
+        .product-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Headings colors */
+        h2, h3 {
+            color: #00bfff; /* Neon Blue */
+        }
+
+        /* New Color for Recommended Sections */
+        .recommendations ul li ul li {
+            color: #e6a5e6; /* Neon Pink for all the recommended sections */
+        }
+
+        /* Labels color */
+        .label {
+            color: #c67224; /* Neon Yellow for labels (Skin Tone, Face Shape, Body Shape) */
+        }
+
+        /* Values color */
+        .value {
+            color: #ff00ff; /* Neon Pink for the values (Dark, Round, Hourglass, etc.) */
+        }
+
+        /* Style for selected occasion text */
+        .occasion-specific {
+            font-size: 20px;
+            font-weight: bold;
+            color: #ff4081; /* Neon Pink color for selected occasion */
+            text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff; /* Glowing effect */
+        }
+
+        /* Hide Scrollbar */
+        ::-webkit-scrollbar {
+            display: none; /* Hide scrollbar */
+        }
+
+        /* Prevent the scrollbar from appearing */
+        .container::-webkit-scrollbar {
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Image Section -->
+        <div class="img-section">
+            <img src="{{ image_url }}" alt="Uploaded Image with Features" class="img-preview">
+            <!-- Back to Dashboard button centered below the image -->
+            <a href="/dashboard" class="btn">Back to Dashboard</a>
+        </div>
+
+        <!-- Result & Recommendations Section -->
+        <div class="result-section">
+            <h2>Analysis Result</h2>
+            <p>Your uploaded image with detected features:</p>
+
+            <div class="result-text">
+                <p><span class="label"><strong>Skin Tone: </strong></span><span class="value">{{ skin_tone }}</span></p>
+                <p><span class="label"><strong>Face Shape: </strong></span><span class="value">{{ face_shape }}</span></p>
+                <p><span class="label"><strong>Body Shape: </strong></span><span class="value">{{ body_shape }}</span></p>
+            </div>
+
+            <div class="occasion-specific">
+                <p><strong>Selected Occasion: </strong>{{ occasion }}</p>
+            </div>
+
+            <div class="recommendations">
+                <h3>Personalized Recommendations:</h3>
+                <ul>
+                    {% if occasion == "Wedding" %}
+                        <li><strong>Makeup:</strong>
+                            <ul>
+                                <li>Foundation: Light shades like Ivory. <a href="https://www.amazon.com/s?k=ivory+foundation" target="_blank">View Product</a></li>
+                                <li>Blush: Soft pink or peach blushes. <a href="https://www.amazon.com/s?k=soft+pink+blush" target="_blank">View Product</a></li>
+                                <li>Lipstick: Soft pinks or nude shades. <a href="https://www.amazon.com/s?k=nude+lipstick" target="_blank">View Product</a></li>
+                                <li>Eyeshadow: Neutral shades like champagne. <a href="https://www.amazon.com/s?k=champagne+eyeshadow" target="_blank">View Product</a></li>
+                            </ul>
+                        </li>
+                        <li><strong>Hairstyle:</strong>
+                            <ul>
+                                <li>Loose waves or soft curls for added volume. <a href="https://www.amazon.com/s?k=hairstyling+tools" target="_blank">View Hairstyling Tools</a></li>
+                                <li>Side-swept bangs to frame your face. <a href="https://www.amazon.com/s?k=side+swept+bangs+styling" target="_blank">View Styling Guide</a></li>
+                                <li>Elegant updo with volume on top to elongate your face. <a href="https://www.amazon.com/s?k=elegant+updo+hairstyles" target="_blank">View Updo Inspiration</a></li>
+                            </ul>
+                        </li>
+                        <li><strong>Clothing:</strong>
+                            <ul>
+                                <li>Empire waist or A-line dress for a flattering look. <a href="https://www.amazon.com/s?k=empire+waist+dresses" target="_blank">View Product</a></li>
+                                <li>V-neckline to elongate your neck. <a href="https://www.amazon.com/s?k=v-neck+dress" target="_blank">View Product</a></li>
+                                <li>Fit-and-flare dresses that enhance your curves. <a href="https://www.amazon.com/s?k=fit+and+flare+dresses" target="_blank">View Product</a></li>
+                            </ul>
+                        </li>
+                        <li><strong>Accessories:</strong>
+                            <ul>
+                                <li>Statement necklace or chandelier earrings. <a href="https://www.amazon.com/s?k=statement+necklaces" target="_blank">View Product</a></li>
+                                <li>Delicate belt at the waist to accentuate your curves. <a href="https://www.amazon.com/s?k=waist+belt+dresses" target="_blank">View Product</a></li>
+                            </ul>
+                        </li>
+                    {% elif occasion == "Party" %}
+                        <li><strong>Makeup:</strong>
+                            <ul>
+                                <li>Bold Lipstick: Red or berry shades. <a href="https://www.amazon.com/s?k=bold+lipstick" target="_blank">View Product</a></li>
+                                <li>Glam Eyeshadow: Smoky or glittery eyeshadow. <a href="https://www.amazon.com/s?k=smoky+eyeshadow" target="_blank">View Product</a></li>
+                                <li>Highlighter: For a glowing finish. <a href="https://www.amazon.com/s?k=highlighter" target="_blank">View Product</a></li>
+                            </ul>
+                        </li>
+                        <li><strong>Hairstyle:</strong>
+                            <ul>
+                                <li>Loose waves or sleek straight hair for a chic look. <a href="https://www.amazon.com/s?k=loose+waves+styling+tools" target="_blank">View Hairstyling Tools</a></li>
+                                <li>Bold hairstyle like a high ponytail. <a href="https://www.amazon.com/s?k=high+ponytail" target="_blank">View Hairstyle Inspiration</a></li>
+                            </ul>
+                        </li>
+                        <li><strong>Clothing:</strong>
+                            <ul>
+                                <li>Bodycon dress for a trendy look. <a href="https://www.amazon.com/s?k=bodycon+dresses" target="_blank">View Product</a></li>
+                                <li>Mini skirts or trendy tops. <a href="https://www.amazon.com/s?k=miniskirts" target="_blank">View Product</a></li>
+                            </ul>
+                        </li>
+                        <li><strong>Accessories:</strong>
+                            <ul>
+                                <li>Bold statement jewelry. <a href="https://www.amazon.com/s?k=statement+jewelry" target="_blank">View Product</a></li>
+                                <li>Clutch bags or handbags for a stylish touch. <a href="https://www.amazon.com/s?k=clutch+bags" target="_blank">View Product</a></li>
+                            </ul>
+                        </li>
+                    {% elif occasion == "Casual" %}
+                        <li><strong>Makeup:</strong>
+                            <ul>
+                                <li>Natural foundation or BB cream. <a href="https://www.amazon.com/s?k=bb+cream" target="_blank">View Product</a></li>
+                                <li>Neutral eyeshadow and lip gloss. <a href="https://www.amazon.com/s?k=neutral+eyeshadow" target="_blank">View Product</a></li>
+                            </ul>
+                        </li>
+                        <li><strong>Hairstyle:</strong>
+                            <ul>
+                                <li>Messy bun or ponytail for an effortless look. <a href="https://www.amazon.com/s?k=messy+bun+styling+tools" target="_blank">View Hairstyling Tools</a></li>
+                            </ul>
+                        </li>
+                        <li><strong>Clothing:</strong>
+                            <ul>
+                                <li>Casual dresses or jeans and a cute top. <a href="https://www.amazon.com/s?k=casual+dresses" target="_blank">View Product</a></li>
+                            </ul>
+                        </li>
+                    {% elif occasion == "Night Out" %}
+                        <li><strong>Makeup:</strong>
+                            <ul>
+                                <li>Bold lip and dramatic eyes. <a href="https://www.amazon.com/s?k=bold+lipstick" target="_blank">View Product</a></li>
+                            </ul>
+                        </li>
+                        <li><strong>Hairstyle:</strong>
+                            <ul>
+                                <li>Sleek straight hair or voluminous curls. <a href="https://www.amazon.com/s?k=voluminous+curls" target="_blank">View Hairstyling Tools</a></li>
+                            </ul>
+                        </li>
+                        <li><strong>Clothing:</strong>
+                            <ul>
+                                <li>Sexy, figure-hugging outfits. <a href="https://www.amazon.com/s?k=night+out+dresses" target="_blank">View Product</a></li>
+                            </ul>
+                        </li>
+                    {% elif occasion == "Vacation" %}
+                        <li><strong>Makeup:</strong>
+                            <ul>
+                                <li>Light foundation and sunscreen. <a href="https://www.amazon.com/s?k=sunscreen" target="_blank">View Product</a></li>
+                            </ul>
+                        </li>
+                        <li><strong>Hairstyle:</strong>
+                            <ul>
+                                <li>Messy beach waves or simple braids. <a href="https://www.amazon.com/s?k=beach+waves+styling" target="_blank">View Hairstyling Tools</a></li>
+                            </ul>
+                        </li>
+                        <li><strong>Clothing:</strong>
+                            <ul>
+                                <li>Comfortable, breathable fabrics. <a href="https://www.amazon.com/s?k=vacation+outfits" target="_blank">View Product</a></li>
+                            </ul>
+                        </li>
+                    {% elif occasion == "Formal" %}
+                        <li><strong>Makeup:</strong>
+                            <ul>
+                                <li>Classic red lipstick and sleek eyes. <a href="https://www.amazon.com/s?k=red+lipstick" target="_blank">View Product</a></li>
+                                <li>Subtle highlighter for a refined glow. <a href="https://www.amazon.com/s?k=highlighter" target="_blank">View Product</a></li>
+                            </ul>
+                        </li>
+                        <li><strong>Hairstyle:</strong>
+                            <ul>
+                                <li>Chic low bun or sleek straight hair. <a href="https://www.amazon.com/s?k=low+chic+bun" target="_blank">View Hairstyling Tools</a></li>
+                            </ul>
+                        </li>
+                        <li><strong>Clothing:</strong>
+                            <ul>
+                                <li>Tailored suits or elegant dresses. <a href="https://www.amazon.com/s?k=formal+dresses" target="_blank">View Product</a></li>
+                            </ul>
+                        </li>
+                        <li><strong>Accessories:</strong>
+                            <ul>
+                                <li>Elegant pearl earrings and a simple clutch. <a href="https://www.amazon.com/s?k=pearl+earrings" target="_blank">View Product</a></li>
+                            </ul>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+    
+
+            <br>
+        </div>
+    </div>
+
+</body>
+</html>
