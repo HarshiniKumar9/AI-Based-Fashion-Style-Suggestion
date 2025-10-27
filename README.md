@@ -18,7 +18,8 @@ To develop a smart system that analyzes a user's clothing preferences and provid
 - Dataset: Fashion MNIST / Custom Dataset
 
 ## 🎬 Demo Video
-[▶️ Click here to watch](fashion_ai_demo.mp4)
+[▶️ Watch Demo Video](https://drive.google.com/file/d/1FkkT_1BeI01ufMXifJi9WDxN1asamF93/preview)
+
 
 ---
 
