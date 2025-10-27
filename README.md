@@ -1,32 +1,25 @@
-# AI-Based Fashion and Style Suggestion System
+# 👗 AI-Based Fashion Style Suggestion System
 
-This is a final year M.Sc. project aimed at offering personalized fashion suggestions using AI-based real-time image analysis.
+This project uses artificial intelligence to recommend fashion styles based on user preferences, occasions, and current trends.
 
-## Duration
-November 2024 – February 2025
+## 🎯 Objective
+To develop a smart system that analyzes a user's clothing preferences and provides outfit suggestions using AI and machine learning.
 
-## Technologies Used
-- Python
-- Flask
-- OpenCV
-- MediaPipe
-- SQLite
-- HTML, CSS, JavaScript
+## 🧠 Features
+- Style prediction based on user input (age, gender, event, season)
+- Outfit color coordination suggestions
+- Trend analysis from fashion datasets
+- Real-time recommendations through AI models
 
-## Key Features
-- Real-time fashion recommendations based on user’s face/body detection
-- User authentication and preference storage using SQLite
-- Image analysis powered by OpenCV and MediaPipe
-- Responsive frontend for smooth user experience
-- Deployed on Heroku for live access
+## 🖥️ Tech Stack
+- Python (TensorFlow, OpenCV, scikit-learn)
+- Flask for web interface
+- HTML, CSS, JavaScript (Frontend)
+- Dataset: Fashion MNIST / Custom Dataset
 
-## Folder Structure
-- `app.py` – Flask main backend
-- `static/` – CSS and JS files
-- `templates/` – HTML frontend files
-- `database/` – SQLite files
-- `requirements.txt` – Required packages
+## 🎬 Demo Video
+[▶️ Click here to watch](fashion_ai_demo.mp4)
 
-## How to Run Locally
-activate venv - venv\Scripts\activate
-Run Flask project - python app.py
+---
+
+### ✨ Created by: *K.Harshini*
