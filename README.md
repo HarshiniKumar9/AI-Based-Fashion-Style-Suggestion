@@ -28,6 +28,5 @@ November 2024 – February 2025
 - `requirements.txt` – Required packages
 
 ## How to Run Locally
-```bash
-pip install -r requirements.txt
-python app.py
+activate venv - venv\Scripts\activate
+Run Flask project - python app.py
